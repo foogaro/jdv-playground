@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <vdb name="ITEMS" version="1">
 <description/>
-<property name="validationDateTime" value="Wed Dec 06 13:14:46 CET 2017"/>
+<property name="validationDateTime" value="Sun Dec 10 17:08:25 CET 2017"/>
 <property name="validationVersion" value="9.0.0"/>
-<model name="SQLSERVER_DS" visible="false">
+<property name="lazy-invalidate" value="true"/>
+<model name="SQLSERVER_DS" type="PHYSICAL" visible="false">
 <source connection-jndi-name="SQLSERVER_DS" name="SQLSERVER_DS" translator-name="sqlserver"/>
 <metadata type="DDL"><![CDATA[
 
@@ -22,7 +23,7 @@ CREATE FOREIGN TABLE ITEMS (
 
 ]]></metadata>
 </model>
-<model name="ITEMS" type="VIRTUAL">
+<model name="ITEMS" type="VIRTUAL" visible="true">
 <property name="imports" value="SQLSERVER_DS"/>
 <metadata type="DDL"><![CDATA[
 
@@ -31,7 +32,8 @@ CREATE VIEW ITEMS (
 	ITEM_CODE string(20) NOT NULL OPTIONS(UPDATABLE 'FALSE'),
 	ITEM_DESCRITION string(255) OPTIONS(UPDATABLE 'FALSE'),
 	DT_INSERT timestamp NOT NULL OPTIONS(UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE'),
-	DT_UPDATE timestamp NOT NULL OPTIONS(UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE')
+	DT_UPDATE timestamp NOT NULL OPTIONS(UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE'),
+	CONSTRAINT PK_ITEM_ID PRIMARY KEY(ITEM_ID)
 ) 
 AS
 	SELECT * FROM SQLSERVER_VBL.ITEMS;
