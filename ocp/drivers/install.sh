@@ -16,7 +16,7 @@ install_modules ${injected_dir}/modules
 configure_drivers ${injected_dir}/install.properties
 
 source /usr/local/s2i/install-teiid-common.sh
-install_deployments ${injected_dir}/HORST.vdb
+install_deployments ${injected_dir}/ITEMS.vdb
 
 echo "Adding the OData role to the user luigi..."
 /opt/eap/bin/add-user.sh -a --silent=true -u "luigi" -p "luigi.2017" -g "admin,connect,odata,user"
