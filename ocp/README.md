@@ -1,9 +1,9 @@
-#JBoss Data Virtualization on OpenShift Container Platform 3.6
+# JBoss Data Virtualization on OpenShift Container Platform 3.6
 
 The goal of this example is how to use a custom database driver to connect to an external database, thorugh a Virtual Database (aka VDB).
 For this example, we will use a SQL Server database (believe it or not, running on a Linux container), and the latest SQL Server JDBC driver.
 
-##Prerequisites
+## Prerequisites
 **Before you being make sure you have the firewall and other security tools in a _permissive_ mode.**
 
 Follows the list of the tools needed to follow the example:
