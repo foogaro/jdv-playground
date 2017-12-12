@@ -463,5 +463,5 @@ Luigi
 
 
 
-[ref-employees-db]: https://github.com/foogaro/jdv-play/blob/master/db.png "Employees database reference"
-[ref-haproxy-stats]: https://github.com/foogaro/jdv-play/blob/master/haproxy.png "HAProxy statistics reference"
+[ref-employees-db]: https://github.com/foogaro/jdv-playground/blob/master/ha/db.png "Employees database reference"
+[ref-haproxy-stats]: https://github.com/foogaro/jdv-playground/blob/master/ha/haproxy.png "HAProxy statistics reference"
