@@ -124,7 +124,7 @@ The server is accessible via web console at:
 
 ```
 
-##Login into OCP
+## Login into OCP
 We can now start using the OpenShift Container Platform.
 First of all we need to login as _system administrator_ and import the Docker _images_ we need, as follows: 
 ```bash
