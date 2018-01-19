@@ -66,12 +66,12 @@ d0bc27cdbf85        microsoft/mssql-server-linux:latest                         
 Once you have the database up and running you can login into it and create the database, the schema and the table, as follows:
 ### Create the database
 ```sql
-/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P datavirt.2017 -Q "CREATE DATABASE DATAVIRT2;"
+docker exec -ti sqlserver-loves-linux /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P datavirt.2017 -Q "CREATE DATABASE DATAVIRT2;"
 ```
 
 ### Create the table
 ```sql
-/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P datavirt.2017 -Q "USE DATAVIRT2;
+docker exec -ti sqlserver-loves-linux /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P datavirt.2017 -Q "USE DATAVIRT2;
 CREATE TABLE dbo.ITEMS ( 
   ITEM_ID INT NOT NULL, 
   ITEM_CODE VARCHAR(20) NOT NULL,  
@@ -83,14 +83,16 @@ CREATE TABLE dbo.ITEMS (
 ```
 
 ### Populate the table
+Note that the inserts are split int two batches, this is to avoid saturating the paste-buffer on some 
 ```sql
-/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P datavirt.2017 -Q "USE DATAVIRT2;
+docker exec -ti sqlserver-loves-linux /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P datavirt.2017 -Q "USE DATAVIRT2;
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (1, '0000-0000-0000-0001', 'One', GETDATE(), GETDATE());
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (2, '0000-0000-0000-0002', 'Two', GETDATE(), GETDATE());
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (3, '0000-0000-0000-0003', 'Three', GETDATE(), GETDATE());
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (4, '0000-0000-0000-0004', 'Four', GETDATE(), GETDATE());
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (5, '0000-0000-0000-0005', 'Five', GETDATE(), GETDATE());
-INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (6, '0000-0000-0000-0006', 'Six', GETDATE(), GETDATE());
+INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (6, '0000-0000-0000-0006', 'Six', GETDATE(), GETDATE());"
+docker exec -ti sqlserver-loves-linux /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P datavirt.2017 -Q "USE DATAVIRT2;
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (7, '0000-0000-0000-0007', 'Seven', GETDATE(), GETDATE());
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (8, '0000-0000-0000-0008', 'Eight', GETDATE(), GETDATE());
 INSERT INTO dbo.ITEMS (ITEM_ID, ITEM_CODE, ITEM_DESCRITION, DT_INSERT, DT_UPDATE) VALUES (9, '0000-0000-0000-0009', 'Nine', GETDATE(), GETDATE());
